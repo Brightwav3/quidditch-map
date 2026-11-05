@@ -67,3 +67,20 @@ button:hover { background: var(--ember); }
   #copyLink { padding: 8px 10px; font-size: 15px; }
   #foot { flex-direction: column; align-items: flex-end; gap: 2px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); font-size: 13px; }
 }
+
+#shop { position: fixed; z-index: 2; left: var(--gutter); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); background: var(--ember); border-color: var(--ember); }
+#shopDialog { width: min(480px, calc(100% - 24px)); max-height: calc(100dvh - 24px); box-sizing: border-box; padding: 14px; color: var(--parchment); background: var(--ink); border: 1px solid var(--brass); }
+#shopDialog::backdrop { background: rgba(4, 6, 12, .72); }
+.shopHead { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.shopHead h2 { margin: 0; font: 400 24px/1.1 var(--display); color: var(--brass); }
+#shopClose { background: var(--ink-2); color: var(--parchment); font-size: 22px; padding: 8px; }
+#shopDialog ul { list-style: none; margin: 10px 0; padding: 0; display: grid; gap: 8px; }
+#shopDialog li { padding: 8px 10px; background: var(--ink-2); }
+#shopDialog li strong { display: block; font-weight: 600; }
+#shopDialog li span, #shopDialog p { font-size: 14px; line-height: 1.35; }
+#shopDialog p { margin: 8px 0; }
+#shopDialog .small { font-size: 12px; color: var(--dim); }
+#shopDialog a { color: var(--ember); }
+#kofiFrame { display: block; width: 100%; height: 590px; border: 0; background: #f9f9f9; }
+#shopDialog a.donate { display: block; min-height: 44px; box-sizing: border-box; padding: 12px; text-align: center; text-decoration: none; background: var(--brass); color: #17110a; font: 400 18px/1.1 var(--display); }
+#shopDialog a.donate:hover { background: var(--ember); }

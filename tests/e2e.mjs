@@ -62,14 +62,17 @@ const overlaps = (p, a, b) => p.evaluate((a, b) => {
   assert.equal(stats.lite, true);
   assert.equal(await p.$eval('#cardName', e => e.textContent), '@reesekgoodwin');
   assert.ok(await noOverflow(p), 'page overflows sideways');
-  const kofi = await p.evaluate(() => { const r = [...document.querySelectorAll('iframe')].filter(x => /kofi|ko-fi/i.test(x.id + x.className + x.src + x.title)).map(x => x.getBoundingClientRect()).find(b => b.height > 20 && b.width > 20); return r ? { l: r.left, t: r.top, r: r.right, b: r.bottom } : null; });
-  console.log('ko-fi button', kofi);
-  assert.ok(kofi, 'Ko-fi button did not appear');
-  const card = await p.$eval('#card', e => { const r = e.getBoundingClientRect(); return { b: r.bottom, l: r.left, r: r.right, t: r.top }; });
-  const clash = !(kofi.r <= card.l || card.r <= kofi.l || kofi.b <= card.t || card.b <= kofi.t);
-  assert.equal(clash, false, 'Ko-fi button covers the seat card');
+  assert.equal(await overlaps(p, '#shop', '#card'), false, 'Outfits and ads button covers the seat card');
   assert.equal(await overlaps(p, '#finder', '#card'), false);
   await p.screenshot({ path: `${OUT}/phone-reese.png` });
+  await p.click('#shop');
+  await p.waitForSelector('#kofiFrame[src*="ko-fi.com/interactivecorps"]');
+  await wait(3500);
+  assert.equal(await p.$eval('#shopDialog', d => d.open), true);
+  assert.equal(await p.$eval('#shopDialog', d => d.scrollWidth <= d.clientWidth), true, 'Ko-fi panel overflows sideways');
+  await p.screenshot({ path: `${OUT}/phone-shop.png` });
+  await p.click('#shopClose');
+  assert.equal(await p.$eval('#shopDialog', d => d.open), false);
   assert.deepEqual(errors, []);
   await p.close();
 }

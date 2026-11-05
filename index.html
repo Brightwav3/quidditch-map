@@ -38,17 +38,23 @@
   <div class="actions"><button id="copyLink" type="button">Copy link</button><button id="closeCard" type="button" aria-label="Close seat details">×</button></div>
 </aside>
 
+<button id="shop" type="button">Outfits &amp; ads</button>
+<dialog id="shopDialog" aria-labelledby="shopTitle">
+  <div class="shopHead"><h2 id="shopTitle">Make your mark</h2><button id="shopClose" type="button" aria-label="Close">×</button></div>
+  <ul>
+    <li><strong>The First 100 board</strong><span>Donate $3 or more while spots last to get your name on it.</span></li>
+    <li><strong>Choose your character's look</strong><span>Donate $3 or more and tell me the outfit you want.</span></li>
+    <li><strong>Advertise on a pitch board</strong><span>Tell me what you want to show, and I'll reply with the price before you pay.</span></li>
+  </ul>
+  <p>Put your @handle and your choice in the Ko-fi message.</p>
+  <a class="donate" href="https://ko-fi.com/interactivecorps" target="_blank" rel="noopener">Donate on Ko-fi</a>
+  <p class="small">You can also use the form below. If it doesn't load, use the button above.</p>
+  <iframe id="kofiFrame" title="Support on Ko-fi" loading="lazy"></iframe>
+  <p class="small">Donations are final unless the reward can't be delivered or the law requires otherwise. Rewards must follow the content rules on Ko-fi.</p>
+</dialog>
+
 <footer id="foot"><span id="tally" aria-live="polite"></span><a href="https://www.instagram.com/quidditchtournaments/" target="_blank" rel="noopener">Instagram</a></footer>
 
 <script type="module" src="src/ui.js"></script>
-<script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
-<script>
-  kofiWidgetOverlay.draw('interactivecorps', {
-    'type': 'floating-chat',
-    'floating-chat.donateButton.text': 'Support me',
-    'floating-chat.donateButton.background-color': '#00b9fe',
-    'floating-chat.donateButton.text-color': '#fff'
-  });
-</script>
 </body>
 </html>

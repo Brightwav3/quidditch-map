@@ -10,7 +10,7 @@ Followers open a public 3D stadium, search for their Instagram handle and fly to
 - **Handles:** every follower is shown, including handles that may offend.
 - **Custom figures:** Reese has her own model in Tower 5, Box 2, Seat 13.
 - **Boards:** the first 100 donors go on the two First 100 boards at the open ends of the stadium. The boards around the pitch are for ads bought by viewers.
-- **Ko-fi:** the floating support button appears on every page.
+- **Ko-fi:** the Outfits & ads panel embeds Ko-fi and explains the First 100, outfit and ad offers.
 - **Arena name:** set by `arena` in `data/followers.json`. Empty shows "?".
 
 ## Phones
