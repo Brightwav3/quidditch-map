@@ -91,6 +91,11 @@ const overlaps = (p, a, b) => p.evaluate((a, b) => {
   assert.match(await p.$eval('main', m => m.innerText), /Updates are not instant/);
   assert.ok(await noOverflow(p), 'terms page overflows sideways');
   assert.ok(await p.evaluate(() => { scrollTo(0, 400); return scrollY > 0; }), 'terms page does not scroll');
+  await p.type('#cancelName', '@tester'); await p.type('#cancelDetails', 'First 100 board, 2026-11-05');
+  await p.click('#cancelForm button');
+  await p.waitForSelector('#cancelResult:not([hidden])');
+  assert.match(await p.$eval('#cancelText', n => n.textContent), /cancelling my purchase.*@tester.*First 100 board/);
+  assert.ok(await noOverflow(p), 'cancel form overflows sideways');
   await p.screenshot({ path: `${OUT}/phone-terms.png` });
   await p.close();
 }
