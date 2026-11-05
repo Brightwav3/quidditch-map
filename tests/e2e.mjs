@@ -83,5 +83,16 @@ const overlaps = (p, a, b) => p.evaluate((a, b) => {
   await p.screenshot({ path: `${OUT}/phone-home.png` });
   await p.close();
 }
+// Terms page
+{
+  const p = await browser.newPage(); await p.setViewport({ width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
+  const r = await p.goto(URL_BASE + 'terms.html', { waitUntil: 'load' });
+  assert.equal(r.status(), 200);
+  assert.match(await p.$eval('main', m => m.innerText), /Updates are not instant/);
+  assert.ok(await noOverflow(p), 'terms page overflows sideways');
+  assert.ok(await p.evaluate(() => { scrollTo(0, 400); return scrollY > 0; }), 'terms page does not scroll');
+  await p.screenshot({ path: `${OUT}/phone-terms.png` });
+  await p.close();
+}
 await browser.close();
 console.log('All browser checks passed.');
