@@ -1,0 +1,14 @@
+{
+  "name": "quidditch-map",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 4188",
+    "add": "node scripts/add-followers.mjs",
+    "test": "node --test tests/unit.test.mjs",
+    "e2e": "node tests/e2e.mjs"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.16.0"
+  }
+}

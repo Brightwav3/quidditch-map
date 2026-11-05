@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Find Your Seat · Quidditch Tournaments</title>
+<meta name="description" content="Follow on Instagram, get a seat. Find your name in the 3D stadium.">
+<meta name="theme-color" content="#090d18">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Spectral:wght@400;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">
+{"imports":{
+  "three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+<div id="stage"><div id="frame"></div></div>
+
+<div id="loader" role="status"><span>Opening the gates…</span></div>
+
+<header id="finder">
+  <h1>Find your seat</h1>
+  <form id="finderForm" role="search" autocomplete="off">
+    <input id="finderInput" type="search" placeholder="@your_handle" aria-label="Your Instagram handle" role="combobox" aria-controls="suggest" aria-expanded="false" aria-autocomplete="list" autocapitalize="none" spellcheck="false" enterkeyhint="search" disabled>
+    <button>Find</button>
+  </form>
+  <ul id="suggest" role="listbox" aria-label="Matching handles" hidden></ul>
+  <p id="message" role="status" hidden></p>
+</header>
+
+<aside id="card" aria-label="Selected seat" hidden>
+  <div><strong id="cardName"></strong><span id="cardSeat"></span></div>
+  <div class="actions"><button id="copyLink" type="button">Copy link</button><button id="closeCard" type="button" aria-label="Close seat details">×</button></div>
+</aside>
+
+<footer id="foot"><span id="tally" aria-live="polite"></span><a href="https://www.instagram.com/quidditchtournaments/" target="_blank" rel="noopener">Instagram</a></footer>
+
+<script type="module" src="src/ui.js"></script>
+<script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
+<script>
+  kofiWidgetOverlay.draw('interactivecorps', {
+    'type': 'floating-chat',
+    'floating-chat.donateButton.text': 'Support me',
+    'floating-chat.donateButton.background-color': '#00b9fe',
+    'floating-chat.donateButton.text-color': '#fff'
+  });
+</script>
+</body>
+</html>
