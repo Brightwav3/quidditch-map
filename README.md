@@ -30,7 +30,7 @@ npm run add -- list.txt
 
 The script adds only new handles after the existing ones, so nobody moves. It assumes the list is newest first, as Instagram shows it. Use `--oldest-first` for a list in the other order.
 
-Everything that changes lives in `data/followers.json`. Set `"arena"` there when the arena has a name. Add donor names to `"first100"` to show them on the two First 100 boards.
+Everything that changes lives in `data/followers.json`. Set `"arena"` there when the arena has a name, and `"team"` when the team has one (it shows under the arena name on the name boards). Add donor names to `"first100"` to show them on the two First 100 boards.
 
 ## Test
 

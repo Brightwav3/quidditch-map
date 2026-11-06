@@ -21,5 +21,5 @@ if (added.length && !overlap) console.log('Warning: no pasted handle was already
 
 if (args.includes('--dry-run')) { console.log('Dry run: nothing was changed.'); process.exit(0); }
 data.followers = followers;
-writeFileSync(dataPath, `{\n  "arena": ${JSON.stringify(data.arena ?? '')},\n  "first100": ${JSON.stringify(data.first100 ?? [])},\n  "followers": [\n${followers.map(h => `    ${JSON.stringify(h)}`).join(',\n')}\n  ]\n}\n`);
+writeFileSync(dataPath, `{\n  "arena": ${JSON.stringify(data.arena ?? '')},\n  "team": ${JSON.stringify(data.team ?? '')},\n  "first100": ${JSON.stringify(data.first100 ?? [])},\n  "followers": [\n${followers.map(h => `    ${JSON.stringify(h)}`).join(',\n')}\n  ]\n}\n`);
 console.log('Saved data/followers.json.');

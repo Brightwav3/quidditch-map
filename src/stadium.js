@@ -386,7 +386,7 @@ const SEG = 420, TAU = Math.PI * 2;
 /* painted barrier round the pitch: the arena name repeats along it */
 const [wallC, wallX] = canvas(4096, 512);
 const wallT = tex(wallC, { repeat: true });
-let arenaName = '';
+let arenaName = '', teamName = '';
 function paintWall() {
   const x = wallX, W = 4096, H = 512;
   x.fillStyle = '#2b2b2e'; x.fillRect(0, 0, W, H);
@@ -532,7 +532,8 @@ function paintSign() {
   if (arenaName) {
     const t = arenaName.toUpperCase(); let fs = 300;
     do { x.font = `900 ${fs}px "Cinzel Decorative",Georgia,serif`; fs -= 6; } while (x.measureText(t).width > W - 190 && fs > 40);
-    x.fillStyle = grad; x.shadowColor = 'rgba(255,190,90,.5)'; x.shadowBlur = 32; x.fillText(t, W / 2, H / 2 + 8); x.shadowBlur = 0;
+    x.fillStyle = grad; x.shadowColor = 'rgba(255,190,90,.5)'; x.shadowBlur = 32; x.fillText(t, W / 2, teamName ? H / 2 - 34 : H / 2 + 8); x.shadowBlur = 0;
+    if (teamName) { x.font = '400 64px "IM Fell English SC",Georgia,serif'; x.fillStyle = '#e7dcc2'; x.fillText(`home of ${teamName}`, W / 2, H - 104); }
   } else {
     x.font = '900 400px "Cinzel Decorative",Georgia,serif'; x.fillStyle = grad; x.shadowColor = 'rgba(255,190,90,.5)'; x.shadowBlur = 36; x.fillText('?', W / 2, H / 2 - 42); x.shadowBlur = 0;
     x.font = '400 50px "IM Fell English SC",Georgia,serif'; x.fillStyle = '#e7dcc2'; x.fillText('the most liked comment names this arena', W / 2, H - 96);
@@ -1008,7 +1009,7 @@ try {
     new Promise(r => setTimeout(r, 2500))
   ]);
 } catch (e) { }
-setArena(dataFile.arena || '');
+teamName = dataFile.team || ''; setArena(dataFile.arena || '');
 function setArena(n) { arenaName = n; paintSign(); paintWall(); paintFirst100(); }
 resize(); renderer.shadowMap.needsUpdate = true; frameLoop();
 
