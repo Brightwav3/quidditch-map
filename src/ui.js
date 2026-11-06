@@ -77,14 +77,6 @@ copyBtn.addEventListener('click', async () => {
   catch { prompt('Copy your seat link', url); }
 });
 
-const shopDialog = $('shopDialog'), kofiFrame = $('kofiFrame');
-$('shop').addEventListener('click', () => {
-  if (!kofiFrame.src) kofiFrame.src = 'https://ko-fi.com/interactivecorps/?hidefeed=true&widget=true&embed=true&preview=true';
-  shopDialog.showModal();
-});
-$('shopClose').addEventListener('click', () => shopDialog.close());
-shopDialog.addEventListener('click', e => { if (e.target === shopDialog) shopDialog.close(); });
-
 const wanted = new URLSearchParams(location.search).get('seat');
 if (wanted) {
   const match = findHandle(site.handles, wanted);

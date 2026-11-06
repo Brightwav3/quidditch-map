@@ -53,7 +53,7 @@ const overlaps = (p, a, b) => p.evaluate((a, b) => {
   await p.close();
 }
 
-// Phone: deep link, layout, Ko-fi button
+// Phone: deep link, layout, no payment links
 {
   const { p, errors } = await open({ width: 390, height: 844, deviceScaleFactor: 3, isMobile: true, hasTouch: true }, '?seat=reesekgoodwin');
   await wait(4500);
@@ -62,17 +62,9 @@ const overlaps = (p, a, b) => p.evaluate((a, b) => {
   assert.equal(stats.lite, true);
   assert.equal(await p.$eval('#cardName', e => e.textContent), '@reesekgoodwin');
   assert.ok(await noOverflow(p), 'page overflows sideways');
-  assert.equal(await overlaps(p, '#shop', '#card'), false, 'Outfits and ads button covers the seat card');
+  assert.equal(await p.$('#shop, #shopDialog, #kofiFrame, a[href*="ko-fi.com"]'), null, 'a payment link is still on the page');
   assert.equal(await overlaps(p, '#finder', '#card'), false);
   await p.screenshot({ path: `${OUT}/phone-reese.png` });
-  await p.click('#shop');
-  await p.waitForSelector('#kofiFrame[src*="ko-fi.com/interactivecorps"]');
-  await wait(3500);
-  assert.equal(await p.$eval('#shopDialog', d => d.open), true);
-  assert.equal(await p.$eval('#shopDialog', d => d.scrollWidth <= d.clientWidth), true, 'Ko-fi panel overflows sideways');
-  await p.screenshot({ path: `${OUT}/phone-shop.png` });
-  await p.click('#shopClose');
-  assert.equal(await p.$eval('#shopDialog', d => d.open), false);
   assert.deepEqual(errors, []);
   await p.close();
 }
